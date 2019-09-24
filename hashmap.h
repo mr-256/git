@@ -290,7 +290,8 @@ static inline unsigned int hashmap_get_size(struct hashmap *map)
  * If an entry with matching hash code is found, `key` and `keydata` are passed
  * to `hashmap_cmp_fn` to decide whether the entry matches the key.
  */
-void *hashmap_get(const struct hashmap *map, const struct hashmap_entry *key,
+struct hashmap_entry *
+hashmap_get(const struct hashmap *map, const struct hashmap_entry *key,
 			 const void *keydata);
 
 /*
@@ -305,7 +306,8 @@ void *hashmap_get(const struct hashmap *map, const struct hashmap_entry *key,
  * `entry_or_key` parameter of `hashmap_cmp_fn` points to a hashmap_entry
  * structure that should not be used in the comparison.
  */
-static inline void *hashmap_get_from_hash(const struct hashmap *map,
+static inline struct hashmap_entry *
+hashmap_get_from_hash(const struct hashmap *map,
 					  unsigned int hash,
 					  const void *keydata)
 {
