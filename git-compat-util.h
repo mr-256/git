@@ -1338,4 +1338,11 @@ static inline void *container_of_or_null_offset(void *ptr, size_t offset)
 #define container_of_or_null(ptr, type, member) \
 	(type *)container_of_or_null_offset(ptr, offsetof(type, member))
 
+/*
+ * like offsetof(), but takes a pointer to type instead of the type
+ * @ptr is subject to multiple evaluation since we can't rely on TYPEOF()
+ */
+#define OFFSETOF_VAR(ptr, member) \
+	((uintptr_t)&(ptr)->member - (uintptr_t)(ptr))
+
 #endif
